@@ -1,10 +1,19 @@
 const topicSelect = document.querySelector("#topic-select");
+const landingPage = document.querySelector("#landing-page");
+const heroTrack = document.querySelector("#hero-track");
+const heroDots = document.querySelector("#hero-dots");
+const genreShelves = document.querySelector("#genre-shelves");
+const genreNavButtons = [...document.querySelectorAll("[data-topic-nav]")];
+const homeButton = document.querySelector("#home-button");
+const backHomeButton = document.querySelector("#back-home");
 const storyTitle = document.querySelector("#story-title");
 const storyColumns = document.querySelector("#story-columns");
 const wordList = document.querySelector("#word-list");
 const wordPopover = document.querySelector("#word-popover");
 const storySearch = document.querySelector("#story-search");
 const levelFilter = document.querySelector("#level-filter");
+const sessionStats = document.querySelector(".session-stats");
+const organizePanel = document.querySelector(".organize-panel");
 const dictionaryToggle = document.querySelector("#dictionary-toggle");
 const dictionaryPanel = document.querySelector("#dictionary-panel");
 const dictionaryCount = document.querySelector("#dictionary-count");
@@ -33,13 +42,15 @@ const storyViewElements = [
   document.querySelector(".vocabulary-panel"),
   document.querySelector(".story-navigation"),
 ];
+const readerShellElements = [sessionStats, organizePanel, ...storyViewElements];
 
 let stories = [];
 let extraWordExamples = {};
-let currentTopic = "true crime";
+let currentTopic = "nieuws";
 let currentIndex = 0;
 let translationsVisible = true;
 let listVisible = false;
+let landingVisible = true;
 let textSizeIndex = 1;
 const openedStories = new Set();
 const clickedWords = new Set();
@@ -47,6 +58,13 @@ const dictionaryEntries = new Map();
 const manuallyReadStories = new Set();
 const favoriteStories = new Set();
 const textSizes = ["0.92rem", "1rem", "1.12rem", "1.24rem"];
+const topicOrder = ["nieuws", "true crime", "entertainment", "fictie"];
+const topicLabels = {
+  "nieuws": "Nieuws",
+  "true crime": "True crime",
+  "entertainment": "Entertainment",
+  "fictie": "Fictie",
+};
 
 function applyTheme(theme) {
   document.body.dataset.theme = theme;
@@ -105,6 +123,10 @@ function storiesForTopic(topic) {
   return stories.filter((story) => story.topic === topic);
 }
 
+function topicLabel(topic) {
+  return topicLabels[topic] || topic;
+}
+
 function storyMatchesSearch(story, query) {
   if (!query) {
     return true;
@@ -131,6 +153,14 @@ function currentStory() {
   return storiesForTopic(currentTopic)[currentIndex];
 }
 
+function setActiveTopic(topic) {
+  currentTopic = topic;
+  topicSelect.value = topic;
+  genreNavButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.topicNav === topic);
+  });
+}
+
 function todayStoryIndex(topicStories) {
   const startOfYear = new Date(new Date().getFullYear(), 0, 0);
   const diff = Date.now() - startOfYear.getTime();
@@ -152,6 +182,63 @@ function hideWordPopover() {
 function estimateReadingMinutes(story) {
   const wordCount = story.dutch_sentences.join(" ").trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.ceil(wordCount / 15 / 60));
+}
+
+function storyMetaText(story) {
+  return `${estimateReadingMinutes(story)} min lezen`;
+}
+
+function setReaderShellVisible(visible) {
+  readerShellElements.forEach((element) => {
+    element.hidden = !visible;
+  });
+}
+
+function showLandingPage() {
+  landingVisible = true;
+  landingPage.hidden = false;
+  storyListPanel.hidden = true;
+  dictionaryPanel.hidden = true;
+  listVisible = false;
+  toggleStoryListButton.textContent = "Alle verhalen";
+  setReaderShellVisible(false);
+  hideWordPopover();
+  renderLanding();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showReaderPage() {
+  landingVisible = false;
+  landingPage.hidden = true;
+  setReaderShellVisible(true);
+}
+
+function openStoryById(storyId) {
+  const story = stories.find((candidate) => candidate.id === storyId);
+  if (!story) {
+    return;
+  }
+
+  setActiveTopic(story.topic);
+  currentIndex = storiesForTopic(story.topic).findIndex((candidate) => candidate.id === storyId);
+  storySearch.value = "";
+  levelFilter.value = "all";
+  showReaderPage();
+  storyListPanel.hidden = true;
+  dictionaryPanel.hidden = true;
+  listVisible = false;
+  toggleStoryListButton.textContent = "Alle verhalen";
+  renderStory();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showGenreOverview(topic) {
+  setActiveTopic(topic);
+  storySearch.value = "";
+  levelFilter.value = "all";
+  showReaderPage();
+  setListVisible(true);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function updateReadingProgress() {
@@ -295,6 +382,153 @@ function appendMarkedExample(container, sentence, word) {
   if (lastIndex < sentence.length) {
     container.append(document.createTextNode(sentence.slice(lastIndex)));
   }
+}
+
+function createMetaPills(story) {
+  const meta = document.createElement("div");
+  meta.className = "landing-card-meta";
+
+  const time = document.createElement("span");
+  time.textContent = storyMetaText(story);
+
+  const level = document.createElement("span");
+  level.textContent = story.level || "B1";
+
+  meta.append(time, level);
+  return meta;
+}
+
+function renderHero() {
+  const newsStories = storiesForTopic("nieuws");
+  heroTrack.replaceChildren();
+  heroDots.replaceChildren();
+
+  newsStories.forEach((story, index) => {
+    const slide = document.createElement("article");
+    slide.className = "hero-slide";
+    slide.id = `hero-slide-${story.id}`;
+
+    const label = document.createElement("span");
+    label.className = "genre-label";
+    label.textContent = topicLabel(story.topic);
+
+    const title = document.createElement("h3");
+    title.textContent = story.title;
+
+    const intro = document.createElement("p");
+    intro.className = "hero-intro";
+    intro.textContent = story.dutch_sentences[0] || "";
+
+    const meta = createMetaPills(story);
+    meta.className = "hero-meta";
+
+    const actions = document.createElement("div");
+    actions.className = "hero-actions";
+
+    const readButton = document.createElement("button");
+    readButton.className = "primary-button";
+    readButton.type = "button";
+    readButton.textContent = "Lees verder";
+    readButton.addEventListener("click", () => openStoryById(story.id));
+
+    actions.append(readButton);
+    slide.append(label, title, intro, meta, actions);
+    heroTrack.append(slide);
+
+    const dot = document.createElement("button");
+    dot.className = "hero-dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Ga naar ${story.title}`);
+    dot.classList.toggle("is-active", index === 0);
+    dot.addEventListener("click", () => {
+      slide.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    });
+    heroDots.append(dot);
+  });
+}
+
+function renderGenreShelves() {
+  genreShelves.replaceChildren();
+
+  topicOrder.forEach((topic) => {
+    const topicStories = storiesForTopic(topic);
+    const shelf = document.createElement("section");
+    shelf.className = "genre-shelf";
+    shelf.setAttribute("aria-label", topicLabel(topic));
+
+    const header = document.createElement("div");
+    header.className = "genre-shelf-header";
+
+    const titleWrap = document.createElement("div");
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = topic === "nieuws" ? "Hoofdgenre" : "Genre";
+
+    const title = document.createElement("h2");
+    title.className = "genre-shelf-title";
+    title.textContent = topicLabel(topic);
+    titleWrap.append(eyebrow, title);
+
+    const allButton = document.createElement("button");
+    allButton.className = "shelf-link";
+    allButton.type = "button";
+    allButton.textContent = "Alles bekijken";
+    allButton.addEventListener("click", () => showGenreOverview(topic));
+
+    header.append(titleWrap, allButton);
+
+    const row = document.createElement("div");
+    row.className = "landing-card-row";
+
+    topicStories.forEach((story) => {
+      const card = document.createElement("button");
+      card.className = "landing-card";
+      card.type = "button";
+      card.addEventListener("click", () => openStoryById(story.id));
+
+      const content = document.createElement("div");
+      const label = document.createElement("span");
+      label.className = "genre-label";
+      label.textContent = topicLabel(story.topic);
+
+      const cardTitle = document.createElement("h3");
+      cardTitle.textContent = story.title;
+      content.append(label, cardTitle);
+
+      card.append(content, createMetaPills(story));
+      row.append(card);
+    });
+
+    shelf.append(header, row);
+    genreShelves.append(shelf);
+  });
+}
+
+function renderLanding() {
+  if (stories.length === 0) {
+    return;
+  }
+
+  renderHero();
+  renderGenreShelves();
+}
+
+function updateHeroDots() {
+  const slides = [...heroTrack.querySelectorAll(".hero-slide")];
+  const dots = [...heroDots.querySelectorAll(".hero-dot")];
+  if (slides.length === 0) {
+    return;
+  }
+
+  const activeIndex = slides.reduce((bestIndex, slide, index) => {
+    const bestDistance = Math.abs(slides[bestIndex].offsetLeft - heroTrack.scrollLeft);
+    const distance = Math.abs(slide.offsetLeft - heroTrack.scrollLeft);
+    return distance < bestDistance ? index : bestIndex;
+  }, 0);
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("is-active", index === activeIndex);
+  });
 }
 
 function renderDictionary() {
@@ -468,6 +702,7 @@ function renderStoryList() {
 }
 
 function setListVisible(visible) {
+  showReaderPage();
   listVisible = visible;
   storyListPanel.hidden = !visible;
   dictionaryPanel.hidden = true;
@@ -480,6 +715,8 @@ function setListVisible(visible) {
 
   if (visible) {
     renderStoryList();
+  } else if (storyColumns.children.length === 0) {
+    renderStory();
   }
 }
 
@@ -558,7 +795,7 @@ function renderStory() {
 }
 
 function setTopic(topic) {
-  currentTopic = topic;
+  setActiveTopic(topic);
   const topicStories = storiesForTopic(currentTopic);
   currentIndex = todayStoryIndex(topicStories);
   setListVisible(false);
@@ -566,6 +803,7 @@ function setTopic(topic) {
 }
 
 function openDictionary() {
+  showReaderPage();
   const willOpen = dictionaryPanel.hidden;
   dictionaryPanel.hidden = !willOpen;
   storyListPanel.hidden = true;
@@ -590,12 +828,24 @@ async function loadStories() {
   const examplesData = await examplesResponse.json();
   stories = storiesData.stories;
   extraWordExamples = examplesData.examples || {};
-  setTopic(currentTopic);
+  setActiveTopic(currentTopic);
+  currentIndex = todayStoryIndex(storiesForTopic(currentTopic));
+  showLandingPage();
 }
 
 topicSelect.addEventListener("change", () => {
   setTopic(topicSelect.value);
 });
+
+genreNavButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    showGenreOverview(button.dataset.topicNav);
+  });
+});
+
+homeButton.addEventListener("click", showLandingPage);
+backHomeButton.addEventListener("click", showLandingPage);
+heroTrack.addEventListener("scroll", updateHeroDots, { passive: true });
 
 storySearch.addEventListener("input", () => {
   if (!listVisible) {

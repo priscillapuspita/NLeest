@@ -10,31 +10,42 @@
   <body data-initial-story-id="{{ initial_story_id }}">
     <main class="reader-app">
       <header class="reader-header">
-        <div class="brand">
+        <button class="brand brand-home" id="home-button" type="button" aria-label="Terug naar de startpagina">
           <img class="brand-logo" src="{{ url_for('static', filename='logo.svg') }}" alt="NLeest logo">
           <div>
-          <p class="eyebrow">Leeswebapp</p>
+            <p class="eyebrow">Leeswebapp</p>
             <h1 class="brand-name"><span class="brand-name-initial">N</span><span class="brand-name-accent">Leest</span></h1>
           </div>
-        </div>
+        </button>
 
         <div class="header-actions">
+          <nav class="genre-nav" aria-label="Genres">
+            <button class="genre-nav-button" type="button" data-topic-nav="nieuws">Nieuws</button>
+            <button class="genre-nav-button" type="button" data-topic-nav="true crime">True crime</button>
+            <button class="genre-nav-button" type="button" data-topic-nav="entertainment">Entertainment</button>
+            <button class="genre-nav-button" type="button" data-topic-nav="fictie">Fictie</button>
+          </nav>
           <div class="reader-controls" aria-label="Leesinstellingen">
             <button class="secondary-button compact-button" id="theme-toggle" type="button">Licht</button>
             <button class="secondary-button compact-button" id="decrease-text" type="button" aria-label="Tekst kleiner">A−</button>
             <button class="secondary-button compact-button" id="increase-text" type="button" aria-label="Tekst groter">A+</button>
           </div>
           <button class="secondary-button" id="toggle-story-list" type="button">Alle verhalen</button>
-          <label class="topic-picker" for="topic-select">
-            <span>Onderwerp</span>
-            <select id="topic-select">
-              {% for topic in topics %}
-                <option value="{{ topic }}">{{ topic|capitalize }}</option>
-              {% endfor %}
-            </select>
-          </label>
         </div>
       </header>
+
+      <section class="landing-page" id="landing-page" aria-label="NLeest startpagina">
+        <section class="hero-carousel" aria-labelledby="hero-title">
+          <div class="hero-heading">
+            <p class="eyebrow">Uitgelicht</p>
+            <h2 id="hero-title">Nieuws om vandaag te lezen</h2>
+          </div>
+          <div class="hero-track" id="hero-track" tabindex="0" aria-label="Uitgelichte nieuwsverhalen"></div>
+          <div class="hero-dots" id="hero-dots" aria-label="Hero navigatie"></div>
+        </section>
+
+        <section class="genre-shelves" id="genre-shelves" aria-label="Verhalen per genre"></section>
+      </section>
 
       <section class="session-stats" aria-label="Sessie statistieken">
         <article class="stat-card">
@@ -65,6 +76,14 @@
             <option value="B2">B2</option>
           </select>
         </label>
+        <label class="topic-picker" for="topic-select">
+          <span>Onderwerp</span>
+          <select id="topic-select">
+            {% for topic in topics %}
+              <option value="{{ topic }}">{{ topic|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </label>
         <button class="secondary-button" id="dictionary-toggle" type="button">Mijn woordenboek (0)</button>
       </section>
 
@@ -88,7 +107,10 @@
             <span class="level-badge" id="story-level">B1</span>
           </div>
         </div>
-        <button class="secondary-button" id="toggle-translation" type="button">Verberg vertaling</button>
+        <div class="story-toolbar-actions">
+          <button class="secondary-button" id="back-home" type="button">Startpagina</button>
+          <button class="secondary-button" id="toggle-translation" type="button">Verberg vertaling</button>
+        </div>
       </section>
 
       <section class="reading-progress" aria-label="Leesvoortgang">
