@@ -105,11 +105,12 @@ select:focus-visible {
 }
 
 .brand-name {
+  color: var(--ink);
   font-weight: 950;
 }
 
-.brand-name span {
-  color: var(--accent);
+.brand-name-accent {
+  color: #f3852a;
 }
 
 .reader-controls {
