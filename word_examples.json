@@ -1,0 +1,74 @@
+{
+  "afspreken": [
+    { "nl": "We spreken volgende week af in het café.", "en": "We are meeting next week at the café." },
+    { "nl": "Heb je al een tijd afgesproken met de dokter?", "en": "Have you already arranged a time with the doctor?" }
+  ],
+  "bijpraten": [
+    { "nl": "Na de vakantie wilde ik graag met mijn vriendin bijpraten.", "en": "After the holiday I really wanted to catch up with my friend." },
+    { "nl": "Tijdens de lunch konden we even bijpraten.", "en": "During lunch we could catch up for a bit." }
+  ],
+  "slok": [
+    { "nl": "Hij nam een grote slok water na het hardlopen.", "en": "He took a big sip of water after running." },
+    { "nl": "Mag ik een slok van je koffie?", "en": "May I have a sip of your coffee?" }
+  ],
+  "ziekenhuis": [
+    { "nl": "Mijn oma ligt deze week in het ziekenhuis.", "en": "My grandmother is in the hospital this week." },
+    { "nl": "Het nieuwe ziekenhuis in de stad is heel modern.", "en": "The new hospital in the city is very modern." }
+  ],
+  "rechtszaak": [
+    { "nl": "De rechtszaak duurde meer dan een jaar.", "en": "The trial lasted more than a year." },
+    { "nl": "Veel mensen volgden de rechtszaak op televisie.", "en": "Many people followed the trial on television." }
+  ],
+  "twijfelen": [
+    { "nl": "Ik twijfel nog of ik vanavond mee zal gaan.", "en": "I am still doubting whether I will come along tonight." },
+    { "nl": "Je hoeft niet aan jezelf te twijfelen.", "en": "You don't have to doubt yourself." }
+  ],
+  "mensenrechtenactivist": [
+    { "nl": "De mensenrechtenactivist hield een toespraak over vrijheid.", "en": "The human rights activist gave a speech about freedom." },
+    { "nl": "Veel mensen bewonderen de moedige mensenrechtenactivist.", "en": "Many people admire the brave human rights activist." }
+  ],
+  "overheid": [
+    { "nl": "De overheid maakte gisteren nieuwe regels bekend.", "en": "The government announced new rules yesterday." },
+    { "nl": "De overheid wil meer geld aan onderwijs uitgeven.", "en": "The government wants to spend more money on education." }
+  ],
+  "vervolgen": [
+    { "nl": "De politie wil de dief vervolgen.", "en": "The police want to prosecute the thief." },
+    { "nl": "Vroeger werden mensen om hun geloof vervolgd.", "en": "In the past, people were persecuted for their faith." }
+  ],
+  "gif": [
+    { "nl": "Sommige planten bevatten een gevaarlijk gif.", "en": "Some plants contain a dangerous poison." },
+    { "nl": "De slang spuit gif als ze zich bedreigd voelt.", "en": "The snake injects poison when it feels threatened." }
+  ],
+  "verontwaardiging": [
+    { "nl": "Het oneerlijke besluit zorgde voor grote verontwaardiging.", "en": "The unfair decision caused great outrage." },
+    { "nl": "Met verontwaardiging las hij de boze brief.", "en": "With indignation he read the angry letter." }
+  ],
+  "veroordelen": [
+    { "nl": "De rechter zal de man morgen veroordelen.", "en": "The judge will sentence the man tomorrow." },
+    { "nl": "Wij veroordelen elke vorm van geweld.", "en": "We condemn every form of violence." }
+  ],
+  "dorp": [
+    { "nl": "Ik ben opgegroeid in een klein dorp.", "en": "I grew up in a small village." },
+    { "nl": "Het dorp heeft maar één winkel en één school.", "en": "The village has only one shop and one school." }
+  ],
+  "verantwoordelijk": [
+    { "nl": "Wie is verantwoordelijk voor dit project?", "en": "Who is responsible for this project?" },
+    { "nl": "Ouders zijn verantwoordelijk voor hun kinderen.", "en": "Parents are responsible for their children." }
+  ],
+  "ondervragen": [
+    { "nl": "De politie gaat de getuige ondervragen.", "en": "The police are going to question the witness." },
+    { "nl": "De rechercheur bleef de verdachte urenlang ondervragen.", "en": "The detective kept interrogating the suspect for hours." }
+  ],
+  "gerucht": [
+    { "nl": "Er ging een gerucht dat de school zou sluiten.", "en": "There was a rumour that the school would close." },
+    { "nl": "Geloof niet elk gerucht dat je hoort.", "en": "Don't believe every rumour you hear." }
+  ],
+  "bewijs": [
+    { "nl": "De politie zoekt nog naar meer bewijs.", "en": "The police are still looking for more evidence." },
+    { "nl": "Zonder bewijs kun je niemand beschuldigen.", "en": "Without evidence you cannot accuse anyone." }
+  ],
+  "verdachte": [
+    { "nl": "De verdachte werd door de politie opgepakt.", "en": "The suspect was arrested by the police." },
+    { "nl": "De verdachte zei dat hij onschuldig was.", "en": "The suspect said that he was innocent." }
+  ]
+}

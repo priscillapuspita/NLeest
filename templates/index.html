@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NLeest — Nederlands lezen</title>
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body data-initial-story-id="{{ initial_story_id }}">
+    <main class="reader-app">
+      <header class="reader-header">
+        <div class="brand">
+          <img class="brand-logo" src="{{ url_for('static', filename='logo.svg') }}" alt="NLeest logo">
+          <div>
+          <p class="eyebrow">Leeswebapp</p>
+            <h1 class="brand-name"><span>NL</span>eest</h1>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="reader-controls" aria-label="Leesinstellingen">
+            <button class="secondary-button compact-button" id="theme-toggle" type="button">Licht</button>
+            <button class="secondary-button compact-button" id="decrease-text" type="button" aria-label="Tekst kleiner">A−</button>
+            <button class="secondary-button compact-button" id="increase-text" type="button" aria-label="Tekst groter">A+</button>
+          </div>
+          <button class="secondary-button" id="toggle-story-list" type="button">Alle verhalen</button>
+          <label class="topic-picker" for="topic-select">
+            <span>Onderwerp</span>
+            <select id="topic-select">
+              {% for topic in topics %}
+                <option value="{{ topic }}">{{ topic|capitalize }}</option>
+              {% endfor %}
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <section class="session-stats" aria-label="Sessie statistieken">
+        <article class="stat-card">
+          <span class="stat-value" id="stories-read">0</span>
+          <span class="stat-label">Gelezen</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-value" id="words-clicked">0</span>
+          <span class="stat-label">Nieuwe woorden</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-value">B1</span>
+          <span class="stat-label">Niveau</span>
+        </article>
+      </section>
+
+      <section class="organize-panel" aria-label="Verhalen ordenen">
+        <label class="search-field" for="story-search">
+          <span>Zoeken</span>
+          <input id="story-search" type="search" placeholder="Zoek op titel of tekst">
+        </label>
+        <label class="level-filter" for="level-filter">
+          <span>Niveau</span>
+          <select id="level-filter">
+            <option value="all">Alle</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+          </select>
+        </label>
+        <button class="secondary-button" id="dictionary-toggle" type="button">Mijn woordenboek (0)</button>
+      </section>
+
+      <section class="story-list-panel" id="story-list-panel" aria-labelledby="story-list-title" hidden>
+        <h2 id="story-list-title">Alle verhalen</h2>
+        <div class="story-card-grid" id="story-card-grid"></div>
+      </section>
+
+      <section class="dictionary-panel" id="dictionary-panel" aria-labelledby="dictionary-title" hidden>
+        <h2 id="dictionary-title">Mijn woordenboek</h2>
+        <p class="dictionary-count" id="dictionary-count">0 woorden verzameld</p>
+        <div class="dictionary-grid" id="dictionary-grid"></div>
+      </section>
+
+      <section class="story-toolbar" aria-label="Verhaal opties">
+        <div>
+          <p class="story-label">Verhaal van de dag</p>
+          <h2 id="story-title">...</h2>
+          <div class="story-meta" aria-label="Verhaal informatie">
+            <span id="reading-time">1 min lezen</span>
+            <span class="level-badge" id="story-level">B1</span>
+          </div>
+        </div>
+        <button class="secondary-button" id="toggle-translation" type="button">Verberg vertaling</button>
+      </section>
+
+      <section class="reading-progress" aria-label="Leesvoortgang">
+        <div class="reading-progress-text" id="reading-progress-text">zin 1 / 1</div>
+        <div class="reading-progress-track">
+          <div class="reading-progress-fill" id="reading-progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="story-columns" id="story-columns" aria-label="Verhaal met vertaling"></section>
+
+      <div class="word-popover" id="word-popover" role="dialog" aria-live="polite" hidden></div>
+
+      <section class="vocabulary-panel" aria-labelledby="words-title">
+        <h2 id="words-title">Nieuwe woorden</h2>
+        <div class="word-list" id="word-list"></div>
+      </section>
+
+      <nav class="story-navigation" aria-label="Verhalen navigatie">
+        <button class="secondary-button" id="previous-story" type="button">Vorig verhaal</button>
+        <div class="story-actions">
+          <button class="secondary-button" id="mark-read" type="button">Markeer als gelezen</button>
+          <button class="secondary-button compact-button star-button" id="favorite-story" type="button" aria-label="Favoriet bewaren">☆</button>
+        </div>
+        <button class="secondary-button" id="next-story" type="button">Volgend verhaal</button>
+      </nav>
+
+      <footer class="app-footer">NLeest · versie 1</footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
