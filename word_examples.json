@@ -70,5 +70,89 @@
   "verdachte": [
     { "nl": "De verdachte werd door de politie opgepakt.", "en": "The suspect was arrested by the police." },
     { "nl": "De verdachte zei dat hij onschuldig was.", "en": "The suspect said that he was innocent." }
+  ],
+  "afscheid": [
+    { "nl": "Het afscheid van mijn collega was emotioneel.", "en": "The farewell of my colleague was emotional." },
+    { "nl": "We namen afscheid met een grote knuffel.", "en": "We said goodbye with a big hug." }
+  ],
+  "moederschap": [
+    { "nl": "Zij geniet enorm van het moederschap.", "en": "She enjoys motherhood enormously." },
+    { "nl": "Het moederschap bracht veel nieuwe verantwoordelijkheden.", "en": "Motherhood brought many new responsibilities." }
+  ],
+  "aankondigen": [
+    { "nl": "De school zal de uitslag morgen aankondigen.", "en": "The school will announce the result tomorrow." },
+    { "nl": "Ze gaan binnenkort hun bruiloft aankondigen.", "en": "They are going to announce their wedding soon." }
+  ],
+  "competitie": [
+    { "nl": "De competitie tussen de twee teams is spannend.", "en": "The competition between the two teams is exciting." },
+    { "nl": "Hij doet mee aan een internationale competitie.", "en": "He takes part in an international competition." }
+  ],
+  "tegenstander": [
+    { "nl": "Mijn tegenstander speelde erg sterk.", "en": "My opponent played very strongly." },
+    { "nl": "De tegenstander gaf niet snel op.", "en": "The opponent did not give up easily." }
+  ],
+  "terugkeer": [
+    { "nl": "Iedereen keek uit naar de terugkeer van de zanger.", "en": "Everyone looked forward to the singer's return." },
+    { "nl": "Haar terugkeer op het podium was een groot succes.", "en": "Her return to the stage was a great success." }
+  ],
+  "benieuwd": [
+    { "nl": "Ik ben benieuwd naar het einde van de film.", "en": "I am curious about the end of the film." },
+    { "nl": "We zijn benieuwd hoe het afloopt.", "en": "We are curious how it will end." }
+  ],
+  "griezelfilm": [
+    { "nl": "Ik durf bijna geen griezelfilm te kijken.", "en": "I hardly dare to watch a horror film." },
+    { "nl": "Deze griezelfilm zit vol spanning.", "en": "This horror film is full of suspense." }
+  ],
+  "regisseur": [
+    { "nl": "De regisseur won een prijs voor zijn film.", "en": "The director won an award for his film." },
+    { "nl": "De jonge regisseur heeft veel talent.", "en": "The young director has a lot of talent." }
+  ],
+  "spanning": [
+    { "nl": "De spanning in het verhaal liep snel op.", "en": "The tension in the story rose quickly." },
+    { "nl": "Vlak voor de uitslag voelde iedereen de spanning.", "en": "Just before the result, everyone felt the tension." }
+  ],
+  "bedrag": [
+    { "nl": "De film kostte een enorm bedrag om te maken.", "en": "The film cost a huge amount to make." },
+    { "nl": "Ik betaalde een klein bedrag voor het kaartje.", "en": "I paid a small amount for the ticket." }
+  ],
+  "publiek": [
+    { "nl": "Het publiek klapte luid na de show.", "en": "The audience clapped loudly after the show." },
+    { "nl": "Het publiek was muisstil tijdens de film.", "en": "The audience was dead silent during the film." }
+  ],
+  "belangstelling": [
+    { "nl": "Er was veel belangstelling voor de nieuwe film.", "en": "There was a lot of interest in the new film." },
+    { "nl": "Hij toonde belangstelling voor mijn werk.", "en": "He showed interest in my work." }
+  ],
+  "investeren": [
+    { "nl": "De studio wil meer in jonge makers investeren.", "en": "The studio wants to invest more in young creators." },
+    { "nl": "Je kunt ook in jezelf investeren door te leren.", "en": "You can also invest in yourself by learning." }
+  ],
+  "actrice": [
+    { "nl": "De actrice speelde de hoofdrol in de serie.", "en": "The actress played the lead role in the series." },
+    { "nl": "Zij is mijn favoriete actrice.", "en": "She is my favourite actress." }
+  ],
+  "jeugd": [
+    { "nl": "In mijn jeugd speelde ik vaak buiten.", "en": "In my childhood I often played outside." },
+    { "nl": "Hij heeft een gelukkige jeugd gehad.", "en": "He had a happy childhood." }
+  ],
+  "veroveren": [
+    { "nl": "De band wist het publiek snel te veroveren.", "en": "The band quickly won over the audience." },
+    { "nl": "Met haar lach veroverde ze iedereen.", "en": "With her smile she won everyone over." }
+  ],
+  "leeftijd": [
+    { "nl": "Op zijn leeftijd is hij nog heel actief.", "en": "At his age he is still very active." },
+    { "nl": "Wat is de gemiddelde leeftijd van de groep?", "en": "What is the average age of the group?" }
+  ],
+  "opduiken": [
+    { "nl": "Plotseling dook een oude vriend op.", "en": "Suddenly an old friend turned up." },
+    { "nl": "Het nieuws dook overal op het internet op.", "en": "The news appeared everywhere on the internet." }
+  ],
+  "bewondering": [
+    { "nl": "Ik heb veel bewondering voor haar werk.", "en": "I have a lot of admiration for her work." },
+    { "nl": "Met bewondering keek hij naar de schilderijen.", "en": "With admiration he looked at the paintings." }
+  ],
+  "herinnering": [
+    { "nl": "Deze foto roept een mooie herinnering op.", "en": "This photo brings up a beautiful memory." },
+    { "nl": "Ik bewaar een warme herinnering aan die zomer.", "en": "I keep a warm memory of that summer." }
   ]
 }
