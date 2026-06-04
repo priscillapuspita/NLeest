@@ -24,6 +24,7 @@ const readingProgressText = document.querySelector("#reading-progress-text");
 const readingProgressFill = document.querySelector("#reading-progress-fill");
 const toggleTranslationButton = document.querySelector("#toggle-translation");
 const toggleStoryListButton = document.querySelector("#toggle-story-list");
+const landingLevelFilter = document.querySelector("#landing-level-filter");
 const themeToggleButton = document.querySelector("#theme-toggle");
 const decreaseTextButton = document.querySelector("#decrease-text");
 const increaseTextButton = document.querySelector("#increase-text");
@@ -65,6 +66,12 @@ const topicLabels = {
   "entertainment": "Entertainment",
   "fictie": "Fictie",
 };
+
+function storyMatchesLandingLevel(story) {
+  const selectedLevel = landingLevelFilter.value;
+  const storyLevelValue = story.level || "B1";
+  return selectedLevel === "all" || storyLevelValue === selectedLevel;
+}
 
 function applyTheme(theme) {
   document.body.dataset.theme = theme;
@@ -200,7 +207,9 @@ function showLandingPage() {
   storyListPanel.hidden = true;
   dictionaryPanel.hidden = true;
   listVisible = false;
-  toggleStoryListButton.textContent = "Alle verhalen";
+  if (toggleStoryListButton) {
+    toggleStoryListButton.textContent = "Alle verhalen";
+  }
   setReaderShellVisible(false);
   hideWordPopover();
   renderLanding();
@@ -227,7 +236,9 @@ function openStoryById(storyId) {
   storyListPanel.hidden = true;
   dictionaryPanel.hidden = true;
   listVisible = false;
-  toggleStoryListButton.textContent = "Alle verhalen";
+  if (toggleStoryListButton) {
+    toggleStoryListButton.textContent = "Alle verhalen";
+  }
   renderStory();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -399,9 +410,33 @@ function createMetaPills(story) {
 }
 
 function renderHero() {
-  const newsStories = storiesForTopic("nieuws");
+  const newsStories = storiesForTopic("nieuws").filter(storyMatchesLandingLevel);
   heroTrack.replaceChildren();
   heroDots.replaceChildren();
+
+  if (newsStories.length === 0) {
+    const empty = document.createElement("article");
+    empty.className = "hero-slide hero-slide-empty";
+
+    const content = document.createElement("div");
+    content.className = "hero-content";
+
+    const label = document.createElement("span");
+    label.className = "genre-label";
+    label.textContent = "NIEUWS";
+
+    const title = document.createElement("h3");
+    title.textContent = "Geen verhalen op dit niveau";
+
+    const intro = document.createElement("p");
+    intro.className = "hero-intro";
+    intro.textContent = "Kies een ander niveau om weer uitgelichte verhalen te zien.";
+
+    content.append(label, title, intro);
+    empty.append(content);
+    heroTrack.append(empty);
+    return;
+  }
 
   newsStories.forEach((story, index) => {
     const slide = document.createElement("article");
@@ -465,7 +500,7 @@ function renderGenreShelves() {
   genreShelves.replaceChildren();
 
   topicOrder.forEach((topic) => {
-    const topicStories = storiesForTopic(topic);
+    const topicStories = storiesForTopic(topic).filter(storyMatchesLandingLevel);
     const shelf = document.createElement("section");
     shelf.className = "genre-shelf";
     shelf.setAttribute("aria-label", topicLabel(topic));
@@ -493,6 +528,13 @@ function renderGenreShelves() {
 
     const row = document.createElement("div");
     row.className = "landing-card-row";
+
+    if (topicStories.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "landing-empty";
+      empty.textContent = "Geen verhalen op dit niveau.";
+      row.append(empty);
+    }
 
     topicStories.forEach((story) => {
       const card = document.createElement("button");
@@ -720,7 +762,9 @@ function setListVisible(visible) {
   listVisible = visible;
   storyListPanel.hidden = !visible;
   dictionaryPanel.hidden = true;
-  toggleStoryListButton.textContent = visible ? "Terug naar verhaal" : "Alle verhalen";
+  if (toggleStoryListButton) {
+    toggleStoryListButton.textContent = visible ? "Terug naar verhaal" : "Alle verhalen";
+  }
   storyViewElements.forEach((element) => {
     element.hidden = visible;
   });
@@ -822,7 +866,9 @@ function openDictionary() {
   dictionaryPanel.hidden = !willOpen;
   storyListPanel.hidden = true;
   listVisible = false;
-  toggleStoryListButton.textContent = "Alle verhalen";
+  if (toggleStoryListButton) {
+    toggleStoryListButton.textContent = "Alle verhalen";
+  }
   storyViewElements.forEach((element) => {
     element.hidden = willOpen;
   });
@@ -860,6 +906,9 @@ genreNavButtons.forEach((button) => {
 homeButton.addEventListener("click", showLandingPage);
 backHomeButton.addEventListener("click", showLandingPage);
 heroTrack.addEventListener("scroll", updateHeroDots, { passive: true });
+landingLevelFilter.addEventListener("change", () => {
+  renderLanding();
+});
 
 storySearch.addEventListener("input", () => {
   if (!listVisible) {
@@ -893,9 +942,11 @@ toggleTranslationButton.addEventListener("click", () => {
   applyTranslationVisibility();
 });
 
-toggleStoryListButton.addEventListener("click", () => {
-  setListVisible(!listVisible);
-});
+if (toggleStoryListButton) {
+  toggleStoryListButton.addEventListener("click", () => {
+    setListVisible(!listVisible);
+  });
+}
 
 themeToggleButton.addEventListener("click", () => {
   applyTheme(document.body.dataset.theme === "dark" ? "light" : "dark");

@@ -427,6 +427,16 @@ h2 {
   line-height: 1.18;
 }
 
+.landing-empty {
+  min-width: 240px;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--surface-muted);
+  color: var(--muted);
+  padding: 16px;
+  scroll-snap-align: start;
+}
+
 .topic-picker {
   display: grid;
   gap: 8px;
@@ -536,6 +546,11 @@ h2 {
 .compact-button {
   min-width: 52px;
   padding: 0 12px;
+}
+
+.header-level-filter {
+  min-width: 150px;
+  appearance: none;
 }
 
 .session-stats {
