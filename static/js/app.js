@@ -432,7 +432,21 @@ function renderHero() {
     readButton.addEventListener("click", () => openStoryById(story.id));
 
     actions.append(readButton);
-    slide.append(label, title, intro, meta, actions);
+
+    const content = document.createElement("div");
+    content.className = "hero-content";
+    content.append(label, title, intro, meta, actions);
+
+    const visual = document.createElement("div");
+    visual.className = "hero-visual";
+    visual.setAttribute("aria-hidden", "true");
+
+    const icon = document.createElement("div");
+    icon.className = "hero-icon";
+    icon.textContent = "N";
+
+    visual.append(icon);
+    slide.append(content, visual);
     heroTrack.append(slide);
 
     const dot = document.createElement("button");
