@@ -33,7 +33,8 @@ def story_for_day(stories, topic):
 
 
 @app.route("/")
-def index():
+@app.route("/verhaal/<slug>")
+def index(slug=None):
     stories = load_stories()
     topics = ["true crime", "fictie", "entertainment", "nieuws"]
     initial_story = story_for_day(stories, topics[0])

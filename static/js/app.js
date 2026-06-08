@@ -6,6 +6,7 @@ const genreShelves = document.querySelector("#genre-shelves");
 const genreNavButtons = [...document.querySelectorAll("[data-topic-nav]")];
 const homeButton = document.querySelector("#home-button");
 const backHomeButton = document.querySelector("#back-home");
+const copyLinkButton = document.querySelector("#copy-link");
 const storyTitle = document.querySelector("#story-title");
 const storyColumns = document.querySelector("#story-columns");
 const wordList = document.querySelector("#word-list");
@@ -47,6 +48,8 @@ const readerShellElements = [sessionStats, organizePanel, ...storyViewElements];
 
 let stories = [];
 let extraWordExamples = {};
+let storySlugs = new Map();
+let storiesBySlug = new Map();
 let currentTopic = "nieuws";
 let currentIndex = 0;
 let translationsVisible = true;
@@ -130,6 +133,42 @@ function storiesForTopic(topic) {
   return stories.filter((story) => story.topic === topic);
 }
 
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function buildStorySlugs() {
+  storySlugs = new Map();
+  storiesBySlug = new Map();
+  const baseSlugCounts = new Map();
+
+  stories.forEach((story) => {
+    const baseSlug = slugify(story.title) || story.id;
+    baseSlugCounts.set(baseSlug, (baseSlugCounts.get(baseSlug) || 0) + 1);
+  });
+
+  stories.forEach((story) => {
+    const baseSlug = slugify(story.title) || story.id;
+    const slug = baseSlugCounts.get(baseSlug) > 1 ? story.id : baseSlug;
+    storySlugs.set(story.id, slug);
+    storiesBySlug.set(slug, story);
+  });
+}
+
+function storyUrl(story) {
+  return `/verhaal/${storySlugs.get(story.id) || story.id}`;
+}
+
+function routeSlugFromPath() {
+  const match = window.location.pathname.match(/^\/verhaal\/([^/]+)\/?$/);
+  return match ? decodeURIComponent(match[1]) : "";
+}
+
 function topicLabel(topic) {
   return topicLabels[topic] || topic;
 }
@@ -201,7 +240,8 @@ function setReaderShellVisible(visible) {
   });
 }
 
-function showLandingPage() {
+function showLandingPage(options = {}) {
+  const { updateHistory = true } = options;
   landingVisible = true;
   landingPage.hidden = false;
   storyListPanel.hidden = true;
@@ -213,6 +253,9 @@ function showLandingPage() {
   setReaderShellVisible(false);
   hideWordPopover();
   renderLanding();
+  if (updateHistory && window.location.pathname !== "/") {
+    history.pushState({ view: "landing" }, "", "/");
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -222,7 +265,8 @@ function showReaderPage() {
   setReaderShellVisible(true);
 }
 
-function openStoryById(storyId) {
+function openStoryById(storyId, options = {}) {
+  const { updateHistory = true } = options;
   const story = stories.find((candidate) => candidate.id === storyId);
   if (!story) {
     return;
@@ -240,6 +284,9 @@ function openStoryById(storyId) {
     toggleStoryListButton.textContent = "Alle verhalen";
   }
   renderStory();
+  if (updateHistory) {
+    history.pushState({ view: "story", storyId: story.id }, "", storyUrl(story));
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -250,6 +297,67 @@ function showGenreOverview(topic) {
   showReaderPage();
   setListVisible(true);
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function applyCurrentRoute(options = {}) {
+  const { replace = false } = options;
+  const slug = routeSlugFromPath();
+  const story = slug ? storiesBySlug.get(slug) : null;
+
+  if (story) {
+    openStoryById(story.id, { updateHistory: false });
+    if (replace) {
+      history.replaceState({ view: "story", storyId: story.id }, "", storyUrl(story));
+    }
+    return;
+  }
+
+  showLandingPage({ updateHistory: false });
+  if (replace) {
+    history.replaceState({ view: "landing" }, "", "/");
+  }
+}
+
+async function copyCurrentStoryLink() {
+  const story = currentStory();
+  if (!story) {
+    return;
+  }
+
+  const url = new URL(storyUrl(story), window.location.origin).href;
+  const originalText = copyLinkButton.textContent;
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(url);
+    } else {
+      copyTextWithFallback(url);
+    }
+    copyLinkButton.textContent = "Link gekopieerd";
+  } catch {
+    if (copyTextWithFallback(url)) {
+      copyLinkButton.textContent = "Link gekopieerd";
+    } else {
+      copyLinkButton.textContent = "Kopieer handmatig";
+    }
+  }
+
+  window.setTimeout(() => {
+    copyLinkButton.textContent = originalText;
+  }, 1800);
+}
+
+function copyTextWithFallback(text) {
+  const input = document.createElement("input");
+  input.value = text;
+  input.setAttribute("readonly", "");
+  input.style.position = "fixed";
+  input.style.opacity = "0";
+  document.body.append(input);
+  input.select();
+  const copied = document.execCommand("copy");
+  input.remove();
+  return copied;
 }
 
 function updateReadingProgress() {
@@ -748,9 +856,7 @@ function renderStoryList() {
 
     card.append(title, meta, badges);
     card.addEventListener("click", () => {
-      currentIndex = storiesForTopic(currentTopic).findIndex((candidate) => candidate.id === story.id);
-      setListVisible(false);
-      renderStory();
+      openStoryById(story.id);
     });
 
     storyCardGrid.append(card);
@@ -888,9 +994,10 @@ async function loadStories() {
   const examplesData = await examplesResponse.json();
   stories = storiesData.stories;
   extraWordExamples = examplesData.examples || {};
+  buildStorySlugs();
   setActiveTopic(currentTopic);
   currentIndex = todayStoryIndex(storiesForTopic(currentTopic));
-  showLandingPage();
+  applyCurrentRoute({ replace: true });
 }
 
 topicSelect.addEventListener("change", () => {
@@ -905,6 +1012,7 @@ genreNavButtons.forEach((button) => {
 
 homeButton.addEventListener("click", showLandingPage);
 backHomeButton.addEventListener("click", showLandingPage);
+copyLinkButton.addEventListener("click", copyCurrentStoryLink);
 heroTrack.addEventListener("scroll", updateHeroDots, { passive: true });
 landingLevelFilter.addEventListener("change", () => {
   renderLanding();
@@ -966,12 +1074,24 @@ previousStoryButton.addEventListener("click", () => {
   const topicStories = storiesForTopic(currentTopic);
   currentIndex = (currentIndex - 1 + topicStories.length) % topicStories.length;
   renderStory();
+  const story = currentStory();
+  if (story) {
+    history.pushState({ view: "story", storyId: story.id }, "", storyUrl(story));
+  }
 });
 
 nextStoryButton.addEventListener("click", () => {
   const topicStories = storiesForTopic(currentTopic);
   currentIndex = (currentIndex + 1) % topicStories.length;
   renderStory();
+  const story = currentStory();
+  if (story) {
+    history.pushState({ view: "story", storyId: story.id }, "", storyUrl(story));
+  }
+});
+
+window.addEventListener("popstate", () => {
+  applyCurrentRoute();
 });
 
 loadReaderPreferences();
