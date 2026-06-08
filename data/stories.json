@@ -820,5 +820,106 @@
       }
     ],
     "level": "B1"
+  },
+  {
+    "id": "nieuws-a2-1",
+    "topic": "nieuws",
+    "level": "A2",
+    "title": "Een nieuwe speeltuin in het park",
+    "dutch_sentences": [
+      "In het park is een nieuwe speeltuin.",
+      "Kinderen spelen er elke dag.",
+      "Er is een grote glijbaan.",
+      "Ook is er een schommel.",
+      "De ouders zitten op een bank.",
+      "Zij kijken naar de kinderen.",
+      "Iedereen is blij met de speeltuin.",
+      "Het is een fijne plek in de buurt."
+    ],
+    "english_sentences": [
+      "In the park there is a new playground.",
+      "Children play there every day.",
+      "There is a big slide.",
+      "There is also a swing.",
+      "The parents sit on a bench.",
+      "They watch the children.",
+      "Everyone is happy with the playground.",
+      "It is a nice place in the neighbourhood."
+    ],
+    "new_words": [
+      { "word": "speeltuin", "article": "de", "translation": "playground" },
+      { "word": "glijbaan", "article": "de", "translation": "slide" },
+      { "word": "schommel", "article": "de", "translation": "swing" },
+      { "word": "bank", "article": "de", "translation": "bench" },
+      { "word": "buurt", "article": "de", "translation": "neighbourhood" }
+    ]
+  },
+  {
+    "id": "nieuws-a2-2",
+    "topic": "nieuws",
+    "level": "A2",
+    "title": "De markt op zaterdag",
+    "dutch_sentences": [
+      "Op zaterdag is er een markt in de stad.",
+      "Veel mensen komen naar de markt.",
+      "Je kunt er groente en fruit kopen.",
+      "Er is ook verse vis en kaas.",
+      "De bloemen zijn mooi en goedkoop.",
+      "Ik koop altijd brood bij de bakker.",
+      "De markt is gezellig en druk.",
+      "Ik ga er graag op zaterdag heen."
+    ],
+    "english_sentences": [
+      "On Saturday there is a market in the city.",
+      "Many people come to the market.",
+      "You can buy vegetables and fruit there.",
+      "There is also fresh fish and cheese.",
+      "The flowers are beautiful and cheap.",
+      "I always buy bread from the baker.",
+      "The market is cosy and busy.",
+      "I like to go there on Saturday."
+    ],
+    "new_words": [
+      { "word": "markt", "article": "de", "translation": "market" },
+      { "word": "groente", "article": "de", "translation": "vegetable" },
+      { "word": "vis", "article": "de", "translation": "fish" },
+      { "word": "goedkoop", "article": "", "translation": "cheap" },
+      { "word": "bakker", "article": "de", "translation": "baker" },
+      { "word": "gezellig", "article": "", "translation": "cosy / convivial" }
+    ]
+  },
+  {
+    "id": "nieuws-a2-3",
+    "topic": "nieuws",
+    "level": "A2",
+    "title": "Een nieuwe bus in de stad",
+    "dutch_sentences": [
+      "In de stad rijdt een nieuwe bus.",
+      "De bus is groen en stil.",
+      "Hij rijdt op elektriciteit.",
+      "Dat is beter voor het milieu.",
+      "De bus stopt bij het station.",
+      "Veel mensen nemen de bus naar hun werk.",
+      "Een kaartje is niet duur.",
+      "De mensen zijn blij met de nieuwe bus."
+    ],
+    "english_sentences": [
+      "In the city a new bus is driving.",
+      "The bus is green and quiet.",
+      "It runs on electricity.",
+      "That is better for the environment.",
+      "The bus stops at the station.",
+      "Many people take the bus to work.",
+      "A ticket is not expensive.",
+      "People are happy with the new bus."
+    ],
+    "new_words": [
+      { "word": "bus", "article": "de", "translation": "bus" },
+      { "word": "stil", "article": "", "translation": "quiet" },
+      { "word": "elektriciteit", "article": "de", "translation": "electricity" },
+      { "word": "milieu", "article": "het", "translation": "environment" },
+      { "word": "station", "article": "het", "translation": "station" },
+      { "word": "duur", "article": "", "translation": "expensive" }
+    ]
   }
 ]
