@@ -154,5 +154,65 @@
   "herinnering": [
     { "nl": "Deze foto roept een mooie herinnering op.", "en": "This photo brings up a beautiful memory." },
     { "nl": "Ik bewaar een warme herinnering aan die zomer.", "en": "I keep a warm memory of that summer." }
+  ],
+  "speeltuin": [
+    { "nl": "De kinderen spelen in de speeltuin.", "en": "The children play in the playground." },
+    { "nl": "Naast de school is een speeltuin.", "en": "Next to the school there is a playground." }
+  ],
+  "glijbaan": [
+    { "nl": "De glijbaan is hoog en snel.", "en": "The slide is high and fast." },
+    { "nl": "Het kind gaat van de glijbaan.", "en": "The child goes down the slide." }
+  ],
+  "schommel": [
+    { "nl": "Ik duw mijn zusje op de schommel.", "en": "I push my little sister on the swing." },
+    { "nl": "De schommel hangt aan een boom.", "en": "The swing hangs from a tree." }
+  ],
+  "bank": [
+    { "nl": "We zitten op een bank in het park.", "en": "We sit on a bench in the park." },
+    { "nl": "De oude man rust op de bank.", "en": "The old man rests on the bench." }
+  ],
+  "markt": [
+    { "nl": "Op de markt koop ik groente.", "en": "At the market I buy vegetables." },
+    { "nl": "De markt is op zaterdag.", "en": "The market is on Saturday." }
+  ],
+  "groente": [
+    { "nl": "Ik eet elke dag groente.", "en": "I eat vegetables every day." },
+    { "nl": "Wortels zijn een gezonde groente.", "en": "Carrots are a healthy vegetable." }
+  ],
+  "vis": [
+    { "nl": "Op vrijdag eten we vaak vis.", "en": "On Friday we often eat fish." },
+    { "nl": "De vis zwemt in het water.", "en": "The fish swims in the water." }
+  ],
+  "goedkoop": [
+    { "nl": "Deze tas is heel goedkoop.", "en": "This bag is very cheap." },
+    { "nl": "Op de markt is het fruit goedkoop.", "en": "At the market the fruit is cheap." }
+  ],
+  "bakker": [
+    { "nl": "De bakker maakt vers brood.", "en": "The baker makes fresh bread." },
+    { "nl": "Ik haal een taart bij de bakker.", "en": "I get a cake from the baker." }
+  ],
+  "gezellig": [
+    { "nl": "Het is gezellig bij mijn oma.", "en": "It is cosy at my grandmother's." },
+    { "nl": "We hadden een gezellige avond.", "en": "We had a cosy evening." }
+  ],
+  "bus": [
+    { "nl": "Ik ga met de bus naar school.", "en": "I go to school by bus." },
+    { "nl": "De bus komt om acht uur.", "en": "The bus comes at eight o'clock." }
+  ],
+  "stil": [
+    { "nl": "In de bibliotheek is het stil.", "en": "In the library it is quiet." },
+    { "nl": "Wees stil, de baby slaapt.", "en": "Be quiet, the baby is sleeping." }
+  ],
+  "elektriciteit": [
+    { "nl": "De lamp werkt op elektriciteit.", "en": "The lamp runs on electricity." },
+    { "nl": "Zonder elektriciteit doet de tv het niet.", "en": "Without electricity the TV does not work." }
+  ],
+  "station": [
+    { "nl": "De trein staat op het station.", "en": "The train is at the station." },
+    { "nl": "Ik wacht op je bij het station.", "en": "I am waiting for you at the station." }
+  ],
+  "duur": [
+    { "nl": "Deze schoenen zijn te duur.", "en": "These shoes are too expensive." },
+    { "nl": "Een nieuwe auto is heel duur.", "en": "A new car is very expensive." }
   ]
 }
