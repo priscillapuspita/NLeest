@@ -921,5 +921,107 @@
       { "word": "station", "article": "het", "translation": "station" },
       { "word": "duur", "article": "", "translation": "expensive" }
     ]
+  },
+  {
+    "id": "truecrime-a2-1",
+    "topic": "true crime",
+    "level": "A2",
+    "title": "De koffie van Mirna",
+    "dutch_sentences": [
+      "Mirna gaat naar een café in Jakarta.",
+      "Ze drinkt daar koffie met een vriendin.",
+      "Maar de koffie smaakt heel vreemd.",
+      "Mirna wordt snel ziek.",
+      "Ze gaat meteen naar het ziekenhuis.",
+      "De dokters kunnen haar niet helpen.",
+      "De politie doet onderzoek naar de koffie.",
+      "Het is een bekende zaak in Indonesië."
+    ],
+    "english_sentences": [
+      "Mirna goes to a café in Jakarta.",
+      "She drinks coffee there with a friend.",
+      "But the coffee tastes very strange.",
+      "Mirna gets sick quickly.",
+      "She goes to the hospital immediately.",
+      "The doctors cannot help her.",
+      "The police investigate the coffee.",
+      "It is a famous case in Indonesia."
+    ],
+    "new_words": [
+      { "word": "café", "article": "het", "translation": "café" },
+      { "word": "vreemd", "article": "", "translation": "strange" },
+      { "word": "ziek", "article": "", "translation": "sick" },
+      { "word": "ziekenhuis", "article": "het", "translation": "hospital" },
+      { "word": "onderzoek", "article": "het", "translation": "investigation" },
+      { "word": "zaak", "article": "de", "translation": "case" }
+    ]
+  },
+  {
+    "id": "truecrime-a2-2",
+    "topic": "true crime",
+    "level": "A2",
+    "title": "Het mysterie in het dorp",
+    "dutch_sentences": [
+      "In een klein dorp gebeurt iets vreemds.",
+      "Twee vrouwen zijn ineens vermist.",
+      "De familie maakt zich grote zorgen.",
+      "De politie zoekt overal in het dorp.",
+      "Veel mensen praten over de zaak.",
+      "Er zijn veel vragen, maar weinig antwoorden.",
+      "Het hele land volgt het nieuws.",
+      "Niemand weet precies wat er is gebeurd."
+    ],
+    "english_sentences": [
+      "In a small village something strange happens.",
+      "Two women are suddenly missing.",
+      "The family worries a lot.",
+      "The police search everywhere in the village.",
+      "Many people talk about the case.",
+      "There are many questions, but few answers.",
+      "The whole country follows the news.",
+      "Nobody knows exactly what happened."
+    ],
+    "new_words": [
+      { "word": "dorp", "article": "het", "translation": "village" },
+      { "word": "vermist", "article": "", "translation": "missing" },
+      { "word": "familie", "article": "de", "translation": "family" },
+      { "word": "zoeken", "article": "", "translation": "to search" },
+      { "word": "antwoord", "article": "het", "translation": "answer" },
+      { "word": "gebeuren", "article": "", "translation": "to happen" }
+    ]
+  },
+  {
+    "id": "truecrime-a2-3",
+    "topic": "true crime",
+    "level": "A2",
+    "title": "De diefstal in het museum",
+    "dutch_sentences": [
+      "In het museum hangt een duur schilderij.",
+      "Op een nacht is het schilderij weg.",
+      "Een dief heeft het gestolen.",
+      "De bewaker zag niemand binnenkomen.",
+      "De politie zoekt naar sporen.",
+      "Op de camera is bijna niets te zien.",
+      "Iedereen vraagt zich af wie de dief is.",
+      "Tot nu toe is het schilderij niet gevonden."
+    ],
+    "english_sentences": [
+      "In the museum hangs an expensive painting.",
+      "One night the painting is gone.",
+      "A thief has stolen it.",
+      "The guard saw nobody come in.",
+      "The police look for clues.",
+      "On the camera almost nothing can be seen.",
+      "Everyone wonders who the thief is.",
+      "Until now the painting has not been found."
+    ],
+    "new_words": [
+      { "word": "museum", "article": "het", "translation": "museum" },
+      { "word": "schilderij", "article": "het", "translation": "painting" },
+      { "word": "dief", "article": "de", "translation": "thief" },
+      { "word": "stelen", "article": "", "translation": "to steal" },
+      { "word": "bewaker", "article": "de", "translation": "guard" },
+      { "word": "spoor", "article": "het", "translation": "trace / clue" }
+    ]
   }
 ]
